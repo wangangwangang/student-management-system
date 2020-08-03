@@ -22,8 +22,8 @@ int DRStu()
 	{
 		printf("打开文件失败。");
 		printf("按回车键继续\n");
-			setbuf(stdin,NULL);				//清空键盘缓冲区
-			getchar();						//作用是吸收一个字符，这里是用来控制时间
+		setbuf(stdin,NULL);				//清空键盘缓冲区
+		getchar();						//作用是吸收一个字符，这里是用来控制时间
 		return 0;
 	}
 
@@ -53,9 +53,6 @@ int DRStu()
 	}
 	fclose(pa);
 	ps->next->next=NULL;
-	printf("初始化学生信息成功,按回车键继续\n");
-			setbuf(stdin,NULL);
-			getchar();
 	return 1;
 }
 
@@ -71,8 +68,8 @@ int DRTea()
 	{
 		printf("打开文件失败。");
 		printf("按回车键进入主界面\n");
-			setbuf(stdin,NULL);
-			getchar();
+		setbuf(stdin,NULL);
+		getchar();
 		return 0;
 	}
 
@@ -100,8 +97,5 @@ int DRTea()
 	}
 	fclose(pa);
 	pt->next->next=NULL;
-	printf("初始化教师信息成功,按回车键进入系统\n");
-			setbuf(stdin,NULL);
-			getchar();
 	return 1;
 }
