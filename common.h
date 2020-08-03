@@ -33,6 +33,9 @@ int BCStu();//保存学生信息
 int BCTea();//保存老师信息
 int CXStu();//查找学生信息
 void ShowAllStu();//显示所有学生信息
+int DRStu();//将学生信息文件读入系统
+int DRTea();//将教师信息文件读入系统
+
 
 
 #endif  
