@@ -6,8 +6,8 @@
 #include "stu.h"
 #include "common.h"
 
-STU head;																	//定义储存学生信息的头节点
-TEA head1;																	//定义储存老师信息的头节点
+extern STU head;																	//声明学生头节点
+extern TEA head1;																	//声明老师头节点
 
 //登陆界面
 void menu_login()

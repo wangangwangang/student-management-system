@@ -3,31 +3,31 @@
 #include <string.h>
 #include "common.h"
 
-STU head;																	//定义储存学生信息的头节点
-TEA head1;																	//定义储存老师信息的头节点
+STU head;																	//定义学生链表头节点
+TEA head1;																	//定义老师链表头节点
 
-int DRStu()																	//将学生信息文件读入系统
+int DRStu()																	//载入学生信息
 {
-	system("clear");
-	FILE *pa;
-	head.next=NULL;
-	PSTU ps=&head;
-	PSTU pstu;
 
-	if((pa=fopen("student.txt","rb"))==NULL)
+	FILE *pa;																//文件指针变量
+	head.next=NULL;															//头节点初始化
+	PSTU ps=&head;															//学生链表移动指针
+	PSTU pstu;																//新增节点指针变量
+
+	if((pa=fopen("student.txt","rb"))==NULL)								//打开文件，成功返回指向文件的指针，失败发返回NULL
 	{
 		printf("打开文件失败。");
 		printf("按回车键继续\n");
-		setbuf(stdin,NULL);				//清空键盘缓冲区
-		getchar();						//作用是吸收一个字符，这里是用来控制时间
+		setbuf(stdin,NULL);													//清空键盘缓冲区
+		getchar();															//作用是吸收一个字符，这里是用来控制上述提示信息的停留时间
 		return 0;
 	}
 
-	while(1)
+	while(1)																//循环遍历文件
 	{
 
-		pstu=(PSTU)malloc(sizeof(STU));			//在堆内存申请空间，储存学生信息
-		pstu->next=NULL;						//申请新的链表节点时，一定要将指针区赋值为空
+		pstu=(PSTU)malloc(sizeof(STU));										//在堆内存申请空间，储存学生信息
+		pstu->next=NULL;													//申请新的链表节点时，一定要将指针区赋值为空
 
 		if(!pstu)
 		{
@@ -37,9 +37,8 @@ int DRStu()																	//将学生信息文件读入系统
 
 		if(fscanf(pa,"%d %s %s %d %d %d %d %d %d ",&pstu->num,pstu->name,pstu->code,&pstu->age,&pstu->class,&pstu->sx,&pstu->yw,&pstu->cyy,&pstu->mc)!=EOF)
 		{
-			while(ps->next)						//找到当前链表的最后一个节点的指针    
-				ps=ps->next;
-			ps->next=pstu;						//把新节点加入到最后那个节点的后面
+			ps->next=pstu;													//把新节点加入到最后那个节点的后面
+			ps=pstu;														//将移动指针指向最后一个节点
 		}
 		else 
 		{
@@ -48,17 +47,15 @@ int DRStu()																	//将学生信息文件读入系统
 		}
 	}
 	fclose(pa);
-	ps->next->next=NULL;
 	return 1;
 }
 
-//将教师信息文件读入系统
-int DRTea()
+int DRTea()																	//载入老师信息
 {
-	FILE *pa;
-	head1.next=NULL;
-	PTEA pt=&head1;
-	PTEA ptea;
+	FILE *pa;																//定义文件指针
+	head1.next=NULL;														//老师头指针初始化
+	PTEA pt=&head1;															//老师链表移动指针
+	PTEA ptea;																//新增老师链表节点
 
 	if((pa=fopen("teacher.txt","rb"))==NULL)
 	{
@@ -72,18 +69,19 @@ int DRTea()
 	while(1)
 	{
 
-		ptea=(PTEA)malloc(sizeof(TEA));//在堆内存申请空间，储存教师信息
-		ptea->next=NULL;//申请新的链表节点时，一定要将指针区赋值为空
+		ptea=(PTEA)malloc(sizeof(TEA));										//在堆内存申请空间，储存教师信息
+		ptea->next=NULL;													//申请新的链表节点时，一定要将指针区赋值为空
+		
 		if(!ptea)
 		{
 			printf("申请内存空间失败。\n");
 			return 0;
 		}
+		
 		if(fscanf(pa,"%d %s %s %d",&ptea->num,ptea->name,ptea->code,&ptea->class)!=EOF)
 		{
-			while(pt->next)//找到当前链表的最后一个节点的指针
-				pt=pt->next;
-			pt->next=ptea;//把新节点加入到最后那个节点的后面
+			pt->next=ptea;													//把新节点加入到最后那个节点的后面
+			pt=ptea;														//移动指针指向最后一个节点
 		}
 		else
 		{
@@ -91,8 +89,9 @@ int DRTea()
 			break;
 		}
 	}
+	
 	fclose(pa);
-	pt->next->next=NULL;
+	
 	return 1;
 }
 
@@ -104,6 +103,7 @@ int   TC()
 	scanf("%d",&i);
 	return i;
 }
+
 //保存学生信息
 int BCStu()
 {
