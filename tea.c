@@ -3,12 +3,8 @@
 #include <string.h>
 #include "common.h"
 
-//定义学生信息头节点
-STU head;
-//定义教师信息头节点
-TEA head1;
-
-//教师功能区
+extern STU head;																//声明学生头节点
+extern TEA head1;																//声明教师头节点
 
 //显示教师信息
 void ShowTea(int a)
@@ -199,20 +195,24 @@ int XGStuT()
 
 
 
-//教师菜单
-int MenuT(int a)
+int MenuT(int a)																		//教师菜单
 {
 
-	int i,running=1;
+	int i;																				//菜单选项
+	int running=1;																		//循环控制变量
+	
 	while(running)
 	{
 		PTEA pt=&head1;   
-		while(pt->next)
+		
+		while(pt->next)																	//遍历链表，找到特定节点
 		{   
 			if(pt->next->num==a)
 				break;
-			pt=pt->next;
+			else
+				pt=pt->next;
 		}
+		
 		system("clear");
 		printf("**********************************\n");
 		printf("   欢迎%s教师来到教学管理系统   \n",pt->next->name);
@@ -231,6 +231,7 @@ int MenuT(int a)
 			printf("输入有误，请重新选择:");
 			setbuf(stdin,NULL);
 		}
+
 		switch(i)
 		{
 			case 1:ShowAllStu();break;

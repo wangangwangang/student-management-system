@@ -3,24 +3,23 @@
 #include <string.h>
 #include "common.h"
 
-//定义学生信息头节点
-STU head;
-//定义教师信息头节点
-TEA head1;
+extern STU head;												//声明学生链表头节点
+extern TEA head1;												//声明教师链表头节点
 
-//返回指定学号学生节点的上一个节点的指针
-PSTU GetPrevAddrA(int num)
+PSTU GetPrevAddrA(int num)										//返回指定学号学生节点的上一个节点的指针
 {
 
-
-	PSTU pstu=&head;
-	while(pstu->next)
+	PSTU ps=&head;												//定义学生移动指针
+	
+	while(ps->next)
 	{
-		if(pstu->next->num==num)
-			return pstu;
-		pstu=pstu->next;
+		if(ps->next->num==num)
+			return ps;
+		ps=ps->next;
 	}
+	
 	return NULL;
+
 }
 
 //把学生信息节点加入到链表中

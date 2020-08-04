@@ -3,106 +3,113 @@
 #include <string.h>
 #include "common.h"
 
-//定义学生信息头节点
-STU head;
+extern STU head;																//声明学生链表头节点
 
-
-//学生功能区
-
-//显示学生个人信息
-void ShowStuS(int a )
+void ShowStuS(int a )															//显示学生个人信息
 {
+	PSTU ps=&head;
+
 	system("clear");
-	PSTU pstu=&head;
 	printf("***********************************************************\n");
 	printf("学号\t姓名\t密码\t年龄\t班级\t数学\t语文\tC语言\t名次\n");
 	printf("***********************************************************\n");
-	while(pstu->next)
+
+	while(ps->next)																//循环遍历链表
 	{
-		if(pstu->next->num==a)
+		if(ps->next->num==a)
 		{
-			printf("%d\t",pstu->next->num);
-			printf("%s\t",pstu->next->name);
-			printf("%s\t",pstu->next->code);
-			printf("%d\t",pstu->next->age);
-			printf("%d\t",pstu->next->class);
-			printf("%d\t",pstu->next->sx);
-			printf("%d\t",pstu->next->yw);
-			printf("%d\t",pstu->next->cyy);
-			printf("%d\t",pstu->next->mc);
+			printf("%d\t",ps->next->num);
+			printf("%s\t",ps->next->name);
+			printf("%s\t",ps->next->code);
+			printf("%d\t",ps->next->age);
+			printf("%d\t",ps->next->class);
+			printf("%d\t",ps->next->sx);
+			printf("%d\t",ps->next->yw);
+			printf("%d\t",ps->next->cyy);
+			printf("%d\t",ps->next->mc);
 			printf("\n");
 			break;
 		}
-		pstu=pstu->next;
+		else
+		{
+			ps=ps->next;
+		}
 	} 
-	printf("***********************************************************\n");
-	printf("按回车键返回上级界面。\n");
-		setbuf(stdin,NULL);
-		getchar();
 
+	printf("***********************************************************\n");
+
+	printf("按任意键返回\n");
+	setbuf(stdin,NULL);
+	getchar();
 }
 
 
-//修改学生基本信息
-int XGStuS(int a)
+int XGStuS(int a)																//修改学生基本信息
 {
-	PSTU p=&head;
+	PSTU ps=&head;
+
 	system("clear");
 	printf("     **************************   \n");
 	printf("     *欢迎来到学生信息修改界面*   \n");
 	printf("     **************************   \n");
-	while(p->next)
-	{   if(p->next->num==a)
+	while(ps->next)
+	{   
+		if(ps->next->num==a)
 		{
 			printf("密码:");
-			scanf("%s",p->next->code);
+			scanf("%s",ps->next->code);
+			BCStu();
 			printf("修改信息完成\n");
-			printf("按回车键按返回上层界面\n");
-		setbuf(stdin,NULL);
-		getchar();
+			printf("按任意键按返回\n");
+			setbuf(stdin,NULL);
+			getchar();
 			return 0;
 		}
-		p=p->next;
+		else
+		{
+			ps=ps->next;
+		}
 	}
 }
 
-
-
-
-//学生菜单
-int MenuS(int a)
+int MenuS(int a)																	//学生菜单
 {
 
-	int i,running=1;
+	int i;																			//菜单选项
+	int running=1;																	//循环控制变量
+
 	while(running)
 	{
-		PSTU pstu=&head;
-		while(pstu->next)
+
+		PSTU ps=&head;																//学生链表移动指针
+
+		while(ps->next)																//找到学生节点
 		{
-			if(pstu->next->num==a)
+			if(ps->next->num==a)
 				break;
-			pstu=pstu->next;
+			ps=ps->next;
 		}
+
 		system("clear");
 		printf("**************************************\n");
-		printf("      欢迎%s学生来到教学管理系统    \n",pstu->next->name);
+		printf("      欢迎%s学生来到教学管理系统    \n",ps->next->name);			//个性化专人登陆界面
 		printf("          1.显示个人信息            \n");
 		printf("          2.修改个人基本信息        \n");
-		printf("          3.保存个人信息            \n");
-		printf("          4.退出                    \n");
+		printf("          3.退出                    \n");
 		printf("**************************************\n");
 		printf("请选择操作:");
-		while(!scanf("%d",&i)||i<1||i>4)
+
+		while(!scanf("%d",&i)||i<1||i>4)											//判断是否输入的是数字，数字范围是否正确
 		{
 			printf("输入有误，请重新选择:");
 			setbuf(stdin,NULL);
 		}
+
 		switch(i)
 		{
 			case 1:ShowStuS(a);break;
 			case 2:XGStuS(a);break;
-			case 3:BCStu();break;
-			case 4:running=TC();break;
+			case 3:running=0;break;
 		}
 	}
 	return 0;
