@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include "menu.h"
-#include "common.h"
+#include "stu.h"
+#include "tea.h"
+
 
 //主函数
 void main()
