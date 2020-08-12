@@ -150,7 +150,7 @@ void menu_login()															//登陆界面
 {
 	
 	int running=1;															//登录界面循环变量
-	static int k=1;															//用来控制密码输错次数
+	int k=1;																//用来控制密码输错次数
 	int i;																	//用来接受用户名（学生学号或老师序号）
 	char a[20];																//用来接受用户密码
 	int c;																	//首界面选项
