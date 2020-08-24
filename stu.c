@@ -61,8 +61,10 @@ int XGStuT()
 		setbuf(stdin,NULL);
 	}
 	while(p->next)
-	{   if(p->next->num==i)
+	{   
+		if(p->next->num==i)
 		{
+			
 			printf("数学:");
 			while(1!=scanf("%d",&p->next->sx))
 			{
@@ -81,6 +83,8 @@ int XGStuT()
 				printf("输入有误，请重新输入:");
 				setbuf(stdin,NULL);
 			}
+
+
 			//对学生进行成绩从大到小排序
 			int n=0;// 用来接受链表长度，控制循环次数
 			int i,j;//循环变量
@@ -159,7 +163,8 @@ int XGStuT()
 			getchar();
 			return 0;
 		}
-		p=p->next;
+		else
+			p=p->next;
 	}
 
 

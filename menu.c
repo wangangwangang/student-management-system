@@ -12,17 +12,17 @@ int menu_stu(int a)																	//学生菜单
 
 	int i;																			//菜单选项
 	int running=1;																	//循环控制变量
+	PSTU ps=&head;																//学生链表移动指针
 
 	while(running)
 	{
-
-		PSTU ps=&head;																//学生链表移动指针
 
 		while(ps->next)																//找到学生节点
 		{
 			if(ps->next->num==a)
 				break;
-			ps=ps->next;
+			else
+				ps=ps->next;
 		}
 
 		system("clear");
@@ -55,10 +55,10 @@ int menu_tea(int a)																		//教师菜单
 
 	int i;																				//菜单选项
 	int running=1;																		//循环控制变量
+	PTEA pt=&head1;   
 	
 	while(running)
 	{
-		PTEA pt=&head1;   
 		
 		while(pt->next)																	//遍历链表，找到特定节点
 		{   
@@ -149,11 +149,11 @@ int menu_admin()																			//超级用户菜单
 void menu_login()															//登陆界面
 {
 	
+	int c;																	//首界面选项
 	int running=1;															//登录界面循环变量
 	int k=1;																//用来控制密码输错次数
 	int i;																	//用来接受用户名（学生学号或老师序号）
 	char a[20];																//用来接受用户密码
-	int c;																	//首界面选项
 	PSTU ps=&head;															//定义学生结构体指针,指向学生链表的头节点
 	PTEA pt=&head1;															//定义教师结构体指针,指向老师链表的头节点
 	
