@@ -12,7 +12,7 @@ int BCStu()
 	printf("     **************************   \n");
 	printf("     *欢迎来到学生信息保存界面*   \n");
 	printf("     **************************   \n");
-	PSTU p=&head;
+	PSTU ps=&head;
 	FILE *pa;
 	if((pa=fopen("student.txt","w+"))==NULL)
 	{
@@ -22,18 +22,18 @@ int BCStu()
 		getchar();
 		return 0;
 	}
-	while(p->next)
+	while(ps->next)
 	{
-		fprintf(pa,"%d ",p->next->num);
-		fprintf(pa,"%s ",p->next->name);
-		fprintf(pa,"%s ",p->next->code);
-		fprintf(pa,"%d ",p->next->age);
-		fprintf(pa,"%d ",p->next->class);
-		fprintf(pa,"%d ",p->next->sx);
-		fprintf(pa,"%d ",p->next->yw);
-		fprintf(pa,"%d ",p->next->cyy);
-		fprintf(pa,"%d ",p->next->mc);
-		p=p->next;
+		fprintf(pa,"%d ",ps->next->num);
+		fprintf(pa,"%s ",ps->next->name);
+		fprintf(pa,"%s ",ps->next->code);
+		fprintf(pa,"%d ",ps->next->age);
+		fprintf(pa,"%d ",ps->next->class);
+		fprintf(pa,"%d ",ps->next->sx);
+		fprintf(pa,"%d ",ps->next->yw);
+		fprintf(pa,"%d ",ps->next->cyy);
+		fprintf(pa,"%d ",ps->next->mc);
+		ps=ps->next;
 	}
 	fclose(pa);
 	printf("保存完毕\n");
@@ -48,7 +48,7 @@ int BCStu()
 //修改学生成绩信息
 int XGStuT()
 {
-	PSTU p=&head;
+	PSTU ps=&head;
 	system("clear");
 	printf("     **************************   \n");
 	printf("     *欢迎来到学生信息修改界面*   \n");
@@ -60,25 +60,25 @@ int XGStuT()
 		printf("输入有误，请重新输入:");
 		setbuf(stdin,NULL);
 	}
-	while(p->next)
+	while(ps->next)
 	{   
-		if(p->next->num==i)
+		if(ps->next->num==i)
 		{
 			
 			printf("数学:");
-			while(1!=scanf("%d",&p->next->sx))
+			while(1!=scanf("%d",&ps->next->sx))
 			{
 				printf("输入有误，请重新输入:");
 				setbuf(stdin,NULL);
 			}
 			printf("语文:");
-			while(1!=scanf("%d",&p->next->yw))
+			while(1!=scanf("%d",&ps->next->yw))
 			{
 				printf("输入有误，请重新输入:");
 				setbuf(stdin,NULL);
 			}
 			printf("C语言:");
-			while(1!=scanf("%d",&p->next->cyy))
+			while(1!=scanf("%d",&ps->next->cyy))
 			{
 				printf("输入有误，请重新输入:");
 				setbuf(stdin,NULL);
@@ -90,57 +90,57 @@ int XGStuT()
 			int i,j;//循环变量
 			int temp;//数据交换中间变量
 			char a[20];//密码及姓名交换中间数组
-			p=&head;
-			while(p->next)//求链表长度
+			ps=&head;
+			while(ps->next)//求链表长度
 			{
 				n++;
-				p=p->next;
+				ps=ps->next;
 			}
 			if(n!=0&&n!=1)
 				for(i=0;i<n-1;i++)
 				{
-					p=&head;
+					ps=&head;
 					for(j=0;j<n-1-i;j++)
 					{
-						if((p->next->sx+p->next->yw+p->next->cyy)<(p->next->next->sx+p->next->next->yw+p->next->next->cyy))
+						if((ps->next->sx+ps->next->yw+ps->next->cyy)<(ps->next->next->sx+ps->next->next->yw+ps->next->next->cyy))
 						{
-							temp=p->next->sx;//数学交换
-							p->next->sx=p->next->next->sx;
-							p->next->next->sx=temp;
+							temp=ps->next->sx;//数学交换
+							ps->next->sx=ps->next->next->sx;
+							ps->next->next->sx=temp;
 
-							temp=p->next->yw;//语文交换
-							p->next->yw=p->next->next->yw;
-							p->next->next->yw=temp;
+							temp=ps->next->yw;//语文交换
+							ps->next->yw=ps->next->next->yw;
+							ps->next->next->yw=temp;
 
-							temp=p->next->cyy;//c语言交换
-							p->next->cyy=p->next->next->cyy;
-							p->next->next->cyy=temp;
+							temp=ps->next->cyy;//c语言交换
+							ps->next->cyy=ps->next->next->cyy;
+							ps->next->next->cyy=temp;
 
-							temp=p->next->num;//学号交换
-							p->next->num=p->next->next->num;
-							p->next->next->num=temp;
-
-
-							temp=p->next->age;//年龄交换
-							p->next->age=p->next->next->age;
-							p->next->next->age=temp;
-
-							temp=p->next->class;//班级交换
-							p->next->class=p->next->next->class;
-							p->next->next->class=temp;
+							temp=ps->next->num;//学号交换
+							ps->next->num=ps->next->next->num;
+							ps->next->next->num=temp;
 
 
-							strcpy(a,p->next->name);//交换姓名
-							strcpy(p->next->name,p->next->next->name);
-							strcpy(p->next->next->name,a);
+							temp=ps->next->age;//年龄交换
+							ps->next->age=ps->next->next->age;
+							ps->next->next->age=temp;
+
+							temp=ps->next->class;//班级交换
+							ps->next->class=ps->next->next->class;
+							ps->next->next->class=temp;
 
 
-							strcpy(a,p->next->code);//交换密码
-							strcpy(p->next->code,p->next->next->code);
-							strcpy(p->next->next->code,a);
+							strcpy(a,ps->next->name);//交换姓名
+							strcpy(ps->next->name,ps->next->next->name);
+							strcpy(ps->next->next->name,a);
+
+
+							strcpy(a,ps->next->code);//交换密码
+							strcpy(ps->next->code,ps->next->next->code);
+							strcpy(ps->next->next->code,a);
 
 						}
-						p=p->next;
+						ps=ps->next;
 					}
 
 				}
@@ -148,12 +148,12 @@ int XGStuT()
 
 
 
-			p=&head;
+			ps=&head;
 			int k=0;
 			for(i=0;i<n;i++)
 			{
-				p->next->mc=++k;
-				p=p->next;
+				ps->next->mc=++k;
+				ps=ps->next;
 			}
 			
 			BCStu();
@@ -164,7 +164,7 @@ int XGStuT()
 			return 0;
 		}
 		else
-			p=p->next;
+			ps=ps->next;
 	}
 
 
