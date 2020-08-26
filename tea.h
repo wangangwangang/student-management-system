@@ -11,7 +11,6 @@ typedef struct Teacher 				//定义教师信息结构体类型
 }TEA,*PTEA;
 
 //教师功能区
-PTEA GetPrevAddr1A(int num);//返回指定序号教师节点的上一个节点的指针
 int AddTeaA();//把教师信息节点加入到链表中
 int  DelTeaA();//删除教师信息
 void ShowAllTeaA();//显示所有教师信息

@@ -19,7 +19,6 @@ typedef struct Student
 
 //学生功能区
 int XGStuT();//修改学生信息
-PSTU GetPrevAddrA(int num);//返回指定学号学生节点的上一个节点的指针
 int AddStuA();//把学生信息节点加入到链表中
 int  DelStuA();//删除学生信息
 int XGStuA();//修改学生信息
