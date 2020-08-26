@@ -29,6 +29,12 @@ int CXStu();//查找学生信息
 void ShowAllStu();//显示所有学生信息
 void ShowStuS(int a );//显示学生个人信息
 int XGStuS(int a);//修改学生基本信息
+int sort_mc();
+int sort_num();
+int sort_sx();
+int sort_yw();
+int sort_cyy();
+int print();
 
 
 #endif 
