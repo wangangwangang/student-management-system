@@ -1,7 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "tea.h"
+#include "../../include/tea.h"
+#define configPathT "/home/yisheng/stu/student-management-system/config/teacher.txt"
 
 TEA head1;																		//定义教师头节点
 
@@ -15,7 +16,7 @@ int BCTea()																		//保存老师信息
 	printf("     *欢迎来到教师信息保存界面*   \n");
 	printf("     **************************   \n");
 
-	if((pa=fopen("teacher.txt","w+"))==NULL)
+	if((pa=fopen(configPathT,"w+"))==NULL)
 	{
 		printf("打开文件失败。");
 		printf("按回车键返回上个界面\n");
@@ -277,7 +278,7 @@ int DRTea()																	//载入老师信息
 	PTEA pt=&head1;															//老师链表移动指针
 	PTEA ptea;																//新增老师链表节点
 
-	if((pa=fopen("teacher.txt","rb"))==NULL)
+	if((pa=fopen(configPathT,"rb"))==NULL)
 	{
 		printf("打开文件失败。");
 		printf("按回车键进入主界面\n");
@@ -312,7 +313,7 @@ int DRTea()																	//载入老师信息
 
 	fclose(pa);
 
-	return 0;
+	return 1;
 }
 
 //显示教师信息

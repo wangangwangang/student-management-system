@@ -1,7 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "stu.h"
+#include "../../include/stu.h"
+#define configPathS "/home/yisheng/stu/student-management-system/config/student.txt"
 
 STU head;																//定义学生链表头节点
 
@@ -16,7 +17,7 @@ int BCStu()
 	printf("     *欢迎来到学生信息保存界面*   \n");
 	printf("     **************************   \n");
 
-	if((pa=fopen("student.txt","w+"))==NULL)
+	if((pa=fopen(configPathS,"w+"))==NULL)
 	{
 		printf("打开文件失败。");
 		printf("按回车键返回上个界面\n");
@@ -183,7 +184,7 @@ int sort_num()												//对学生进行学号从小到大排序
 			{
 				if((ps->next->num)>(ps->next->next->num))
 				{
-					
+
 					temp=ps->next->sx;					//数学交换
 					ps->next->sx=ps->next->next->sx;
 					ps->next->next->sx=temp;
@@ -229,7 +230,7 @@ int sort_num()												//对学生进行学号从小到大排序
 			}
 
 		}
-
+	
 	return 0;
 }
 
@@ -237,6 +238,7 @@ int sort_yw()  											//对学生进行语文成绩从大到小排序
 {
 
 	int n=0;											//用来接受链表长度，控制循环次数
+	int sum=0;
 	int i,j;											//循环变量
 	int temp;											//数据交换中间变量
 	char a[20];											//密码及姓名交换中间数组
@@ -301,6 +303,14 @@ int sort_yw()  											//对学生进行语文成绩从大到小排序
 			}
 
 		}
+	
+	ps=&head;
+	while(ps->next)
+	{
+		sum+=ps->next->yw;
+		ps=ps->next;
+	}
+	printf("ywAve:%d\n",sum/n);
 
 	return 0;
 }
@@ -310,6 +320,7 @@ int sort_yw()  											//对学生进行语文成绩从大到小排序
 int sort_cyy()
 {
 	int n=0;												//用来接受链表长度，控制循环次数
+	int sum=0;
 	int i,j;												//循环变量
 	int temp;												//数据交换中间变量
 	char a[20];												//密码及姓名交换中间数组
@@ -375,6 +386,13 @@ int sort_cyy()
 
 		}
 
+	ps=&head;
+	while(ps->next)
+	{
+		sum+=ps->next->cyy;
+		ps=ps->next;
+	}
+	printf("cyyAve:%d\n",sum/n);
 	return 0;
 }
 
@@ -382,6 +400,7 @@ int sort_sx()													//对学生进行数学成绩从大到小排序
 {
 
 	int n=0;													//用来接受链表长度，控制循环次数
+	int sum=0;
 	int i,j;													//循环变量
 	int temp;													//数据交换中间变量
 	char a[20];													//密码及姓名交换中间数组
@@ -447,6 +466,13 @@ int sort_sx()													//对学生进行数学成绩从大到小排序
 
 		}
 
+	ps=&head;
+	while(ps->next)
+	{
+		sum+=ps->next->sx;
+		ps=ps->next;
+	}
+	printf("sxAve:%d\n",sum/n);
 	return 0;
 }
 
@@ -716,7 +742,7 @@ int DRStu()																	//载入学生信息
 	PSTU ps=&head;															//学生链表移动指针
 	PSTU pstu;																//新增节点指针变量
 
-	if((pa=fopen("student.txt","rb"))==NULL)								//打开文件，成功返回指向文件的指针，失败发返回NULL
+	if((pa=fopen(configPathS,"rb"))==NULL)								//打开文件，成功返回指向文件的指针，失败发返回NULL
 	{
 		printf("打开文件失败。");
 		printf("按回车键继续\n");
@@ -965,7 +991,6 @@ void ShowAllStu()
 {
 	int k;												//控制查询方式的变量
 	int running=1;
-	PSTU ps=&head;
 
 	while(running)
 	{
@@ -1003,7 +1028,6 @@ void ShowAllStu()
 
 						int running=1;
 						int k;										//控制查询方式的变量
-						float s[3]={0};								//用来计算单科总成绩，从而求出平均分
 
 						while(running)
 						{

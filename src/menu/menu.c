@@ -1,8 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "tea.h"
-#include "stu.h"
+#include "../../include/tea.h"
+#include "../../include/stu.h"
 
 extern STU head;																	//声明学生头节点
 extern TEA head1;																	//声明老师头节点
@@ -204,6 +204,7 @@ void menu_login()															//登陆界面
 					scanf("%s",a);
 					printf("\033[0m");
 
+					ps=&head;
 					while(ps->next)											//循环遍历学生链表
 					{
 						if(ps->next->num==i)
@@ -229,7 +230,8 @@ void menu_login()															//登陆界面
 					}
 					if(ps->next!=NULL)	
 						continue;
-
+                   
+				    pt=&head1;
 					while(pt->next)											//循环遍历老师链表
 					{
 						if(pt->next->num==i)

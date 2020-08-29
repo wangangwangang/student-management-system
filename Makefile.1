@@ -11,16 +11,19 @@ TARGET = go
 CFLAGS = -g -O2 -Wall -I${DIR_INC}
 
 ${DIR_BIN}/${TARGET}:${OBJ}
-	@echo "start link..................."
-	${CC} ${CFLAGS} $+ -o $@
-	@echo "stop link...................."
+	${CC} ${CFLAGS} ${OBJ} -o $@
 
-${DIR_OBJ}/%.o:${SRC}
-	@echo "start huibain..............."
-	${CC} ${CFLAGS} -c $?
-	mv *.o ${DIR_OBJ}/
-	@echo "stop huibian ..............."
+${DIR_OBJ}/%.o:${DIR_SRC}/%.c
+	${CC} ${CFLAGS} -c $< -o $@
 
+${DIR_OBJ}/%.o:${DIR_SRC}/menu/%.c
+	${CC} ${CFLAGS} -c $< -o $@
+ 
+${DIR_OBJ}/%.o:${DIR_SRC}/stu/%.c
+	${CC} ${CFLAGS} -c $< -o $@
+
+${DIR_OBJ}/%.o:${DIR_SRC}/tea/%.c
+	${CC} ${CFLAGS} -c $< -o $@
 
 
 .PHONY:clean run
